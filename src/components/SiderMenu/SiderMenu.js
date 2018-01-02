@@ -5,7 +5,6 @@ import logo from '../../assets/logo.svg';
 import styles from './index.less';
 import { getMenuData } from '../../common/menu';
 import Authorized from '../Authorized';
-import { getRole } from '../../utils/role';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -93,7 +92,6 @@ export default class SiderMenu extends PureComponent {
         } else {
           return Authorized.create({
             authorizedRole: item.role,
-            getRole,
           })(
             <SubMenu
               title={
@@ -117,7 +115,6 @@ export default class SiderMenu extends PureComponent {
       } else {
         return Authorized.create({
           authorizedRole: item.role,
-          getRole,
         })(
           <Menu.Item key={item.key || item.path}>
             {
