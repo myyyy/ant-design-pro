@@ -91,7 +91,7 @@ export default class SiderMenu extends PureComponent {
           return null;
         } else {
           return Authorized.create({
-            authorizedRole: item.role,
+            authority: item.authority,
           })(
             <SubMenu
               title={
@@ -114,7 +114,7 @@ export default class SiderMenu extends PureComponent {
         return null;
       } else {
         return Authorized.create({
-          authorizedRole: item.role,
+          authority: item.authority,
         })(
           <Menu.Item key={item.key || item.path}>
             {
