@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import { Link } from 'dva/router';
 import styles from './index.less';
-import Authorized from '../Authorized';
+import { Authorized } from '../Authorized';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -145,7 +145,7 @@ export default class SiderMenu extends PureComponent {
     });
   }
   render() {
-    const { logo, collapsed, location: { pathname }, onCollapse } = this.props;
+    const { logo, collapsed, location: { pathname } } = this.props;
     const { openKeys } = this.state;
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
