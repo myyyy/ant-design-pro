@@ -22,12 +22,6 @@ export default class SiderMenu extends PureComponent {
       });
     }
   }
-  onCollapse = (collapsed) => {
-    this.props.dispatch({
-      type: 'global/changeLayoutCollapsed',
-      payload: collapsed,
-    });
-  }
   getDefaultCollapsedSubMenus(props) {
     const { location: { pathname } } = props || this.props;
     const snippets = pathname.split('/').slice(1, -1);
@@ -125,6 +119,7 @@ export default class SiderMenu extends PureComponent {
                   to={itemPath}
                   target={item.target}
                   replace={itemPath === this.props.location.pathname}
+                  onClick={this.props.isMobile ? () => { this.props.onCollapse(true); } : undefined}
                 >
                   {icon}<span>{item.name}</span>
                 </Link>
@@ -145,7 +140,7 @@ export default class SiderMenu extends PureComponent {
     });
   }
   render() {
-    const { logo, collapsed, location: { pathname } } = this.props;
+    const { logo, collapsed, location: { pathname }, onCollapse } = this.props;
     const { openKeys } = this.state;
     // Don't show popup menu when it is been collapsed
     const menuProps = collapsed ? {} : {
@@ -162,7 +157,7 @@ export default class SiderMenu extends PureComponent {
         collapsible
         collapsed={collapsed}
         breakpoint="md"
-        onCollapse={this.onCollapse}
+        onCollapse={onCollapse}
         width={256}
         className={styles.sider}
       >
